@@ -6,7 +6,7 @@ def lambda_handler(event, context):
   sys.path.append(os.path.dirname(__file__))
   master = Master(event, context)
   master.logger.info(f"path: {master.request.path}")
-  master.settings.COGNITO.set_auth_by_code(master)
+  # master.settings.COGNITO.set_auth_by_code(master)
   master.settings.COGNITO.set_auth_by_cookie(master)
   try:
     view, kwargs = master.router.path2view(master.request.path)
