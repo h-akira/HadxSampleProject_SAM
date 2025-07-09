@@ -1,15 +1,13 @@
 version: 0.2
 
 phases:
-  # install:
-  #   runtime-versions:
-  #     python: 3.13
+  install:
+    runtime-versions:
+      python: 3.13
   #   commands:
   #     - pip3 install -r requirements.txt -t Layer/python/
   #     # - pip3 install git+https://github.com/h-akira/hads.git@main
   build:
-    runtime-versions:
-      python: 3.13
     commands:
       #- aws s3 sync $(jq -r ".static.local" admin.json) $(jq -r ".static.s3" admin.json) --delete
       #- aws s3 cp $(jq -r ".favicon.local" admin.json) $(jq -r ".favicon.s3" admin.json)
