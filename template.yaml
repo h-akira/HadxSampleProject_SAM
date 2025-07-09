@@ -265,22 +265,6 @@ Resources:
               - "GET"
             CachePolicyId: !Ref CloudFrontCachePolicyCachingDisabled
             OriginRequestPolicyId: !Ref CloudFrontOriginRequestPolicy
-          
-          # Static assets - with caching (conditional)
-          - !If
-            - HasS3Bucket
-            - PathPattern: "/static/*"
-              TargetOriginId: !Sub "${S3BucketName}.s3.${AWS::Region}.amazonaws.com"
-              ViewerProtocolPolicy: "redirect-to-https"
-              Compress: true
-              AllowedMethods:
-                - "HEAD"
-                - "GET"
-              CachedMethods:
-                - "HEAD"
-                - "GET"
-              CachePolicyId: !Ref CloudFrontCachePolicyCachingOptimized
-            - !Ref "AWS::NoValue"
 
   ApplicationResourceGroup:
     Type: AWS::ResourceGroups::Group
