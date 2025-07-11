@@ -15,11 +15,11 @@ def token_exchange(master):
         flag = master.settings.COGNITO.set_auth_by_code(master, code)
         if flag:
             logger.info(f"username: {master.request.username}")
-            return json_response(master, {"message": "認証コードをトークンに交換しました"})
+            return json_response(master, {"message": "success"})
         else:
-            return json_response(master, {"error": "認証コードをトークンに交換できませんでした"}, code=400)
+            return json_response(master, {"error": "failed to exchange code to token"}, code=400)
     else:
-        return json_response(master, {"error": "認証コードが必要です"}, code=400)
+        return json_response(master, {"error": "code is not found, probably expired"}, code=400)
 
 def auth_status(master):
     """
