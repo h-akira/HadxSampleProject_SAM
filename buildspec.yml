@@ -10,18 +10,10 @@ phases:
   install:
     runtime-versions:
       python: 3.13
-  #   commands:
-  #     - pip3 install -r requirements.txt -t Layer/python/
-  #     # - pip3 install git+https://github.com/h-akira/hads.git@main
   build:
     commands:
-      #- aws s3 sync $(jq -r ".static.local" admin.json) $(jq -r ".static.s3" admin.json) --delete
-      #- aws s3 cp $(jq -r ".favicon.local" admin.json) $(jq -r ".favicon.s3" admin.json)
       - echo "CustomDomainName: ${CustomDomainName}"
       - echo "ACMCertificateArn: ${ACMCertificateArn}"
       - echo "S3BucketName: ${S3BucketName}"
       - sam build --parameter-overrides CustomDomainName=${CustomDomainName} ACMCertificateArn=${ACMCertificateArn} S3BucketName=${S3BucketName}
       - sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --parameter-overrides CustomDomainName=${CustomDomainName} ACMCertificateArn=${ACMCertificateArn} S3BucketName=${S3BucketName}
-      # - hads-admin.py admin.json --static-sync2s3
-      # - hads-admin.py admin.json --build
-      # - hads-admin.py admin.json --deploy --no-confirm-changeset
