@@ -72,3 +72,10 @@ def logout(master):
     except Exception as e:
         logger.exception(f"Logout error: {e}")
         return json_response(master, {"error": "内部エラーが発生しました"}, code=500) 
+
+def sample(master):
+    """
+    サンプルAPIエンドポイント
+    GET /api/sample
+    """
+    return json_response(master, {"message": "サンプル文字列"}) 
