@@ -12,8 +12,5 @@ phases:
       python: 3.13
   build:
     commands:
-      - echo "CustomDomainName: ${CustomDomainName}"
-      - echo "ACMCertificateArn: ${ACMCertificateArn}"
-      - echo "S3BucketName: ${S3BucketName}"
       - sam build --parameter-overrides CustomDomainName=${CustomDomainName} ACMCertificateArn=${ACMCertificateArn} S3BucketName=${S3BucketName}
       - sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --parameter-overrides CustomDomainName=${CustomDomainName} ACMCertificateArn=${ACMCertificateArn} S3BucketName=${S3BucketName}
